@@ -117,30 +117,25 @@ Before you execute any command, double check and keep these two things in mind.
 
 Next, follow the below steps carefully to start a release candidate, here we still take `0.3.0` release as an example, so you need to replace with the correct version and number in some places.
 
-1. Create a new _temporary_ release branch on the latest commit of `rX.Y` branch, named as `release-X.Y.Z-rcN`, e.g. `release-0.3.0-rc0`. (The "temporary" here means that you need to clean up the branch after the process finishes)
-
-```
-// Make sure you are on the right commit
-git checkout -b release-0.3.0-rc0
-```
-
-2. Remove the `-SNAPSHOT` suffix in all the versions of Pravega projects in `gradle.properties`. For example, if the current value is `pravegaVersion=0.3.0-SNAPSHOT`, then change it to `pravegaVersion=0.3.0`.
-
-3. Push this commit onto the release branch. The commit message should be `Add release X.Y.Z`. A pull request is NOT required for this commit.
-```
-git commit -s -am "Add release 0.3.0"
-git push origin release-0.3.0-rc0
-```
-
-4. Tag the commit with `vX.Y.Z-rcN` and push this tag. For example, `v0.3.0-rc0`.
+1. Tag the commit with `vX.Y.Z-rcN` and push this tag. For example, `v0.3.0-rc0`.
 ```
 git tag v0.3.0-rc0
 git push origin v0.3.0-rc0
-``` 
-
-5. Delete the temporary release branch.
 ```
-git branch -D release-0.3.0-rc0
+
+2. Create a new release branch on the latest commit of `rX.Y` branch, named as `release-vX.Y.Z-rcN`, e.g. `release-v0.3.0-rc0`.
+
+```
+// Make sure you are on the right commit
+git checkout -b release-v0.3.0-rc0
+```
+
+3. Remove the `-SNAPSHOT` suffix in all the versions of Pravega projects in `gradle.properties`. For example, if the current value is `pravegaVersion=0.3.0-SNAPSHOT`, then change it to `pravegaVersion=0.3.0`.
+
+4. Push this commit onto the release branch. The commit message should be `Add release X.Y.Z`. A pull request is NOT required for this commit.
+```
+git commit -s -am "Add release 0.3.0"
+git push origin release-v0.3.0-rc0
 ```
 
 ## Staging the binary releases
